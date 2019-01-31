@@ -63,15 +63,21 @@ plotting:
         US-CRC: '#74B347'
         DE-CRC: '#8265CC'
     stage.cols:
-        early: 'firebrick4'
-        late: 'darkorange2'
+        early: '#D8AE84'
+        late: '#AE6C3D'
     loc.cols:
-        LC: "#DEEBF7"
-        RC: "#6BAED6"
+        LC: "#6BAED6"
+        RC: "#DEEBF7"
         Rectum: "#08306B"
     sex.cols:
-        F: '#de2d26'
-        M: '#fcae91'
+        F: '#FEB24C'
+        M: '#FFFFB2'
+    bmi.cols:
+        lean: '#53D680'
+        overweight/obese: '#086B27'
+    age.cols:
+        A: "#FF5959"
+        D: "#AD0000"
     peformance.cols:
         - 'black'
         - 'darkgreen'
