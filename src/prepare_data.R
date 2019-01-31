@@ -175,7 +175,7 @@ kegg.red <- kegg.all[f.idx,]
 cat('Retaining', sum(f.idx), 'KEGG features after low-abundance filtering...\n')
 
 
-fn.kegg.rel.ab <- '../data/KEGG/feat_rel_all.tsv'
+fn.kegg.rel.ab <- '../data/KEGG/feat_rel_crc.tsv'
 write.table(kegg.red, file=fn.kegg.rel.ab, quote=FALSE, sep='\t',
             row.names=TRUE, col.names=TRUE)
 
@@ -199,7 +199,7 @@ eggnog.red <- eggnog.all[f.idx,]
 cat('Retaining', sum(f.idx), 
     'eggNOG features after low-abundance filtering...\n')
 
-fn.eggnog.rel.ab <- '../data/eggNOG/feat_rel_all.tsv'
+fn.eggnog.rel.ab <- '../data/eggNOG/feat_rel_crc.tsv'
 write.table(eggnog.red, file=fn.eggnog.rel.ab, quote=FALSE, sep='\t',
             row.names=TRUE, col.names=TRUE)
 
