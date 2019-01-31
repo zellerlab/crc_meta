@@ -1,0 +1,89 @@
+##
+## This file describes the parameters for the run and will be read
+## by the prepare_data.R script in /src
+##
+
+setup:
+    data.location: https://intranet.embl.de/download/zeller/crc_meta/
+    tag: 'g2_l75'
+    ab.cutoff: 1e-03
+
+# alpha
+associations:
+    alpha.meta: 1e-05
+    alpha.single.study: 0.005
+    mult.corr: 'fdr'
+    pr.cutoff: 0.05
+    log.n0: 1e-05
+    log.n0.func: 1e-08
+
+ref.studies:
+    - FR-CRC
+    - AT-CRC
+    - CN-CRC
+    - US-CRC
+    - DE-CRC
+ext.crc.studies:
+    - IT-CRC
+    - IT-CRC-2
+    - JP-CRC
+ext.studies:
+    - CN-T2D
+    - SE-T2D
+    - DE-PD
+    - US-HMP
+    - DN-metaHIT
+
+# model building
+model.building:
+    ab.cutoff: 1e-03
+    norm.method: 'log.std'
+    sd.min.q: 0.1
+    log.n0: 1e-05
+    log.n0.func: 1e-08
+    n.p: 2
+    norm.margin: 1
+    num.folds: 10
+    num.resample: 10
+    stratify: TRUE
+    ml.method: 'lasso'
+    modsel.crit: 'pr'
+    min.nonzero.coeff: 1
+    feature.selection:
+        type: "AUC"
+        cutoff: 800
+
+
+# Plotting
+plotting:
+    study.cols:
+        FR-CRC: '#2FBFBF'
+        AT-CRC: '#177254'
+        CN-CRC: '#F2CC30'
+        US-CRC: '#74B347'
+        DE-CRC: '#8265CC'
+    stage.cols:
+        early: 'firebrick4'
+        late: 'darkorange2'
+    loc.cols:
+        LC: "#DEEBF7"
+        RC: "#6BAED6"
+        Rectum: "#08306B"
+    sex.cols:
+        F: '#de2d26'
+        M: '#fcae91'
+    peformance.cols:
+        - 'black'
+        - 'darkgreen'
+        - 'forestgreen'
+        - 'chartreuse3'
+        - 'lawngreen'
+        - 'yellow'
+    gmm.cols:
+        amino acid degradation: "#F2AD00"
+        organic acid metabolism: "#F98400"
+        glycoprotein degradation: "brown"
+        carbohydrate degradation: "#00A08A"
+    group.cols:
+        CTR: "#C2C2C2"
+        CRC: '#d9544d'
