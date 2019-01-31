@@ -1,0 +1,7 @@
+*.DS_Store
+*.RData
+*.Rhistory
+/data/*
+/models/*
+/files/*
+/figures/*
