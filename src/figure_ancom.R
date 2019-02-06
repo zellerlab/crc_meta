@@ -14,7 +14,7 @@ library("cowplot")
 # load data
 
 # features
-feat <- read.table('../data/species/feat_rel_all.tsv', sep='\t', quote='',
+feat <- read.table('../data/species/feat_rel_crc.tsv', sep='\t', quote='',
                    stringsAsFactors = FALSE, check.names = FALSE)
 # test results
 test.results <- read_tsv('../files/species/all_measures.tsv')
