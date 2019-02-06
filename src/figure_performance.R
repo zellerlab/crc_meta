@@ -135,9 +135,6 @@ dev.off()
 df.plot.loso <- auroc.all %>% 
   filter(study.test != study.train) %>% 
   select(study.test, AUC) %>% 
-  group_by(study.test) %>% 
-  summarize(AUROC=mean(AUC),
-            sd=sd(AUC)) %>% 
   mutate(type='Single Study')
 
 for (study in studies){
@@ -152,29 +149,38 @@ for (study in studies){
   temp <- roc(cases=cases, controls=controls)
   
   df.plot.loso <- bind_rows(
-    df.plot.loso, tibble(study.test=study, AUROC=c(temp$auc), 
-                         sd=NA, type='LOSO'))
+    df.plot.loso, tibble(study.test=study, AUC=c(temp$auc), 
+                         type='LOSO'))
   
 }
 
+temp <- df.plot.loso %>% 
+  group_by(study.test, type) %>% 
+  summarise(AUROC=mean(AUC), sd=sd(AUC)) %>% 
+  ungroup() %>% 
+  mutate(study.test = factor(study.test, levels = plot.levels))
 
 g3 <- df.plot.loso %>% 
   mutate(study.test = factor(study.test, levels = plot.levels)) %>% 
   mutate(type=factor(type, levels=c('Single Study', 'LOSO'))) %>% 
-  ggplot(aes(x=study.test, y=AUROC, fill=type)) + 
-    geom_bar(stat='identity', position=position_dodge(), 
+  ggplot(aes(x=study.test, y=AUC, fill=type)) + 
+    geom_bar(stat='summary', position=position_dodge(), fun.y='mean', 
              size=1, colour='black') + 
-    geom_errorbar(aes(ymin=AUROC-sd, ymax=AUROC+sd), 
-                  position = position_dodge(width = 0.9), width=0.2) + 
+    geom_point(position = position_dodge(width = 0.9)) + 
     scale_y_continuous(breaks=seq(0, 1, by=0.1)) + 
-    ylab('AUROC') + xlab('') +
+    ylab('AUROC') + xlab('') + 
     coord_cartesian(ylim=c(0.5, 1), expand=FALSE) + 
     theme(panel.grid.major.x=element_blank()) + 
     theme_classic() + 
     scale_fill_manual(values=c('white', 'darkgrey'), 
-                      labels=c('Dataset average', 'LOSO'), name='')  
+                      labels=c('Dataset average', 'LOSO'), name='') +
+    geom_errorbar(data=temp, inherit.aes = FALSE, 
+                  aes(x=study.test, ymin=AUROC-sd, ymax=AUROC+sd), 
+                  position = position_dodge(width = 0.9), width=0.2)
+    
+    
 
-ggsave(g3, filename = paste0('../figures/', tag, '/loso_performance', 
+ggsave(g3, filename = paste0('../figures/', tag, '/loso_performance_', 
                              ml.method, '.pdf'),
        width = 5.5, height = 3)
 
