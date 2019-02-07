@@ -107,15 +107,21 @@ for (ext.study in ext.studies){
 
 # ##############################################################################
 # plot results
-g <- df.plot %>%
-  group_by(type, ext.study) %>%
-  summarize(mean=mean(auroc), sd=sd(auroc)) %>%
+temp <- df.plot %>% 
   filter(type!='LOSO') %>%
-  ggplot(aes(x=ext.study, y=mean, fill=type)) +
-    geom_bar(stat='identity', position = position_dodge(), col='black') +
-    geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd),
+  group_by(type, ext.study) %>%
+  summarize(mean=mean(auroc), sd=sd(auroc))
+
+g <- df.plot %>%
+  filter(type!='LOSO') %>%
+  ggplot(aes(x=ext.study, y=auroc, fill=type)) +
+    geom_bar(stat='summary', fun.y='mean', position = position_dodge(), 
+             col='black') + 
+    geom_point(position = position_dodge(0.9)) + 
+    geom_errorbar(data=temp, inherit.aes = FALSE, 
+                  aes(x=ext.study, ymin=mean-sd, ymax=mean+sd),
                   position = position_dodge(0.9),
-                  width=0.2) +
+                  width=0.2) + 
     coord_cartesian(ylim = c(0.5, 1)) +
     theme_classic() +
     theme(panel.grid.major.y = element_line(colour='grey')) +

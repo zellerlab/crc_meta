@@ -142,18 +142,23 @@ df.plot <- bind_rows(df.plot, temp)
 
 # ##############################################################################
 # plot
-g <- df.plot %>% 
+temp <- df.plot %>% 
   group_by(Group, type) %>% 
-  summarise(m=mean(fpr), sd=sd(fpr)) %>% 
-  ungroup() %>% 
+  summarize(m=mean(fpr), sd=sd(fpr))
+
+g <- df.plot %>% 
   mutate(Group=factor(Group, levels=c('CTR', 'T2D', 'PD', 'UC', 'CD'))) %>% 
-  ggplot(aes(x=Group, y=m, fill=type)) +
-    geom_bar(stat='identity', position = position_dodge(), colour='black') +
-    geom_errorbar(aes(ymin=m-sd, ymax=m+sd), width=0.25, 
+  ggplot(aes(x=Group, y=fpr, fill=type)) +
+    geom_bar(stat='summary', fun.y='mean', position = position_dodge(), 
+             colour='black') + 
+    geom_point(position = position_dodge(0.9)) + 
+    geom_errorbar(data=temp, inherit.aes = FALSE,
+                  aes(x=Group, ymin=m-sd, ymax=m+sd), width=0.25, 
                   position = position_dodge(width = 0.9)) + 
     theme_bw() + theme(panel.grid.minor = element_blank()) +  
     scale_fill_manual(values=c('white', 'grey')) + 
     ylab('False positive rate (FPR)')
     
 ggsave(g, filename = paste0('../figures/species/figure_cross_classification_', 
-                            ml.method, '.pdf'), width = 6, height = 4)
+                            ml.method, '.pdf'), width = 6, height = 4,
+       useDingbats=FALSE)
