@@ -129,4 +129,4 @@ g <- df.plot %>%
     xlab('') + ylab('AUROC')
 ggsave(g, filename = paste0('../figures/', tag,
                             '/external_classification_', ml.method, '.pdf'),
-       width = 6, height = 5)
+       width = 6, height = 5, useDingbats=FALSE)
