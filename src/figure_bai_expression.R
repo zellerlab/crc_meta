@@ -27,15 +27,14 @@ bai.hits <- read_tsv('../files/genes/hits/bai_hits.tsv')
 bai.mat <- read.table('../data/genes/bai_genes_crc.tsv', sep='\t', quote='',
                       stringsAsFactors = FALSE, check.names = FALSE)
 
-qPCR <- read_tsv('../files/qPCR/qPCR_values.tsv') %>% 
-  mutate(GeneCoreID=as.character(GeneCoreID))
+qPCR <- read_tsv('../files/qPCR/qPCR_values.tsv')
 
 # ##############################################################################
 # process primer CT values
 
 
 df.plot <- qPCR %>% 
-  group_by(GeneCoreID, Bacteria, type, Diagnosis) %>% 
+  group_by(GeneCoreID, Bacteria, type) %>% 
   summarise(mean.ct=mean(CT.value)) %>% 
   mutate(delta.ct=0) %>% 
   ungroup()
@@ -85,7 +84,7 @@ a <- df.plot.2 %>%
 b <- df.plot.2 %>% 
   mutate(Group=factor(Group, levels=c('CTR', 'CRC'))) %>% 
   ggplot(aes(x=Group, y=delta.ct.y, fill=Group)) +
-  geom_boxplot() +
+  geom_boxplot(outlier.shape = NA) +
   geom_jitter(aes(col=Group), width = 0.1) +
   stat_compare_means(method.args=list(alternative='greater')) + 
   ylab('') + xlab('') +
@@ -109,21 +108,19 @@ c <- df.plot.2 %>%
   scale_colour_manual(values=unlist(parameters$plotting$group.cols),
                       guide=FALSE)
 
-d<- df.plot %>% 
-  filter(Bacteria=='baiFsciF2') %>% 
-  filter(type=='RNA') %>% 
-  mutate(Diagnosis=factor(Diagnosis, levels=c('CTR', 'CRC'))) %>% 
-  ggplot(aes(x=Diagnosis, y=delta.ct, fill=Diagnosis)) +
-  geom_boxplot(outlier.shape = NA) + 
-  geom_jitter(aes(col=Diagnosis), width = 0.1) + 
-  stat_compare_means(method.args=list(alternative='less')) + 
-  ylab('') +  xlab('') + 
-  scale_colour_manual(values=unlist(parameters$plotting$group.cols), 
-                      guide=FALSE) + 
-  scale_fill_manual(values=alpha(unlist(parameters$plotting$group.cols), 
-                                 alpha = 0.75), guide=FALSE) + 
+d<- df.plot.2 %>% 
+  mutate(Group=factor(Group, levels=c('CTR', 'CRC'))) %>% 
+  ggplot(aes(x=Group, y=delta.ct.x, fill=Group)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(aes(col=Group), width = 0.1) +
+  stat_compare_means(method.args=list(alternative='greater')) + 
+  ylab('') + xlab('') +
   theme(text = element_text(size=7),
-        axis.text = element_text(size=6))
+        axis.text = element_text(size=6)) +
+  scale_colour_manual(values=unlist(parameters$plotting$group.cols),
+                      guide=FALSE)+
+  scale_fill_manual(values=alpha(unlist(parameters$plotting$group.cols), 
+                                 alpha=0.75), guide=FALSE)
 
 # ##############################################################################
 # plot everything together
