@@ -29,14 +29,19 @@ easily check whether that is the case by running
     >- _you may have to change the path to the path of the downloaded file_
     >- _in Windows, you will need to have the package
     [rtools](https://cran.r-project.org/bin/windows/Rtools/) installed_
-        >   - _i guess... never tested on a Windows system_
+        >   - _i guess... I have not tested this on a Windows system yet_
+
+- You will need the [GMMs](https://github.com/raeslab/GMMs) tools to calculate
+the abundance of gut metabolic modules. In this project, I used the version
+[fcc7ac1](https://github.com/raeslab/GMMs/commit/fcc7ac1553d1e1409cc73ee2a8cf24b81fece378)
+of the GMMs tool.
 
 ## Workflow
 
 To reproduce the main figures of the project, you can follow these instructions.
 
 
-### Setup
+### 1. Setup
 
 First, you will have to download the taxonomic and functional profiles and the
 metadata needed for this project. They are stored on the ftp server of the
@@ -49,7 +54,7 @@ Rscript prepare_data.R
 ```
 
 
-### Association Testing
+### 2. Association Testing
 
 In order to run the association testing pipeline, please use the
 `marker_analysis.R` script. The script computes the generalised fold change
@@ -74,8 +79,20 @@ e.g. KEGG functional profiles
 in this case, you may need to manually tweak the script to get satisfying
 results
 
+- As an additional analysis, we tested how well the meta-analysis associations
+(seen here as a `true` set of associations) can be found when assessing only a
+single study. This is done by calculating precision and recall for the
+detection of the true set given the single study associations.
+```bash
+Rscript figure_precision_recall.R
+```
+- Since the concept of the generalized fold change may be new, there is a
+script that creates a figures which should aid the explanation of the concept:
+```bash
+Rscript figure_fc_explanation.R
+```
 
-### Confounder Analysis
+### 3. Confounder Analysis
 
 To reproduce the confounder analysis and the accompanying figure, please type:
 
@@ -91,8 +108,23 @@ colonoscopy status).
 The script will also produce a plot contrasting the variance explained by the
 potential confounder and by disease status.
 
+- If you want to recreate the alpha/beta diversity analysis (which also shows
+the strong influence of `Study` as a confounder), you can use this script:
+```bash
+Rscript figure_a_b_diversity.R
+```
 
-### Clustering
+- We assessed another potential confounder in our data, namely the compositional
+nature of microbiome data. The method
+[ANCOM](https://www.tandfonline.com/doi/abs/10.3402/mehd.v26.27663) accounts
+for compositionality effects and was applied to the data alongside the
+blocked Wilcoxon test. The following script reproduces the supplementary figure
+comparing Wilcoxon and ANCOM:
+```bash
+Rscript figure_ancom.R
+```
+
+### 4. Clustering
 
 We found that the most strongly associated species can be grouped into four
 different clusters with preferential enrichment in different patient subgroup.
@@ -107,7 +139,7 @@ The script will also produce a set of plots showing the positivity for each
 species clusters in different patient subgroups.
 
 
-### Machine Learning Pipeline
+### 5. Machine Learning Pipeline
 
 The machine learning pipeline can be run using the `train_models.R` script. The
 script will train one LASSO model for each study and one model for each
@@ -139,16 +171,73 @@ Rscript train_models.R species randomForest
 Rscript figure_performance.R species randomForest
 ```
 
+There are a few additional analyses that can be performed:
+- Bias in the predictions:  
+To test the predictions for any bias from potential confounding variables,
+use the script:
+```bash
+Rscript figure_prediction_bias.R species
+```
+In this script, you can give again the feature type and additionally the
+machine learning method as command line arguments.
 
-### Functional Enrichment
+- Classifier weights:  
+For the `LASSO` classifier, we can also investigate the feature weights in
+more detail, using the script:
+```bash
+Rscript figure_weights.R
+```
+
+- Combined classifier:  
+We can also run a classifier on the combination of eggNOG and species features:
+```bash
+Rscript train_models_combination.R
+```
+
+- Performance on the gene catalogue:  
+LASSO models had also been trained on the complete gene catalogue, albeit not
+with `SIAMCAT`, since there are too many features. Therefore, we need another
+script to plot the results:
+```bash
+Rscript figure_performance_genes.R
+```
 
 
+### 6. Functional Enrichment
 
-### External Validation
+1. **Gut Metabolic Modules**  
+The gut metabolic modules are based on the publication by
+[Vireia-Silva _et al_.](https://www.nature.com/articles/nmicrobiol201688) and
+the accompanying tool [GMMs](https://github.com/raeslab/GMMs). The GMMs are
+computed based on KEGG abundances. Please follow the script `compute_GMMs.R`,
+in which you will also find instructions to run the GMMs tool.  
+The main plots for the GMMs can be replicated by calling:
+```bash
+Rscript figure_GMMs.R
+```
+Another analysis trying to link the GMMs with species level abundances can be
+re-run with:
+```bash
+Rscript link_GMM_species.R
+```
+
+2. **Potential CRC-related functions**  
+In order to test several different CRC-related functions of the microbiome, we
+screened the [IGC](https://www.nature.com/articles/nbt.2942) with several HMMs.
+The HMMs were created with [HMMER](http://hmmer.org/) and can be found under
+`./files/genes/hmms/`.  
+To recreate the panels of the main and the extended data figure, you can type:
+```bash
+Rscript figure_gene_abundance.R
+Rscript figure_bai_expression.R
+Rscript figure_bai_extended.R
+```
+
+### 7. External Validation
 
 There are two different types of external validations included in this project.
 
-1. Other CRC studies  
+1. **Other CRC studies**  
 To check the associations and the classification accuracy in other CRC studies,
 you can run these scripts:
 ```bash
@@ -158,9 +247,14 @@ Rscript external_validation_classification.R species
 Here, you can use all the models that have been trained before
 (i.e. `species`/`KEGG`/`eggNOG`).  
 Again, you can indicate another machine learning method as second command line
-argument.
+argument.  
+Also, the functional enrichment can be reproduced in the external CRC studies.
+In order to do so, you can type:
+```bash
+Rscript external_validation_genes.R
+```
 
-2. Non-CRC studies  
+2. **Non-CRC studies**  
 We also looked at other studies with shotgun metagenomic analyses that included
 non-CRC patients to check how much cross-classification we get with other
 diseases. In order to run this analysis, you can use:
