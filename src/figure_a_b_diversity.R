@@ -5,13 +5,13 @@
 # ##############################################################################
 
 # Packages
-library("tidyverse")
 library("labdsv")
 library("coin")
 library("vegan")
 library("yaml")
 library("ggpubr")
 library("cowplot")
+library("tidyverse")
 
 parameters <- yaml.load_file('../parameters.yaml')
 ref.studies <- parameters$ref.studies
