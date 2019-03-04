@@ -1,0 +1,104 @@
+Module	Name	Position	HL1	HL2
+MF0001	arabinoxylan degradation	input	carbohydrate degradation	polysaccharide degradation
+MF0002	fructan degradation	input	carbohydrate degradation	polysaccharide degradation
+MF0003	pectin degradation I	input	carbohydrate degradation	polysaccharide degradation
+MF0004	pectine degradation II	input	carbohydrate degradation	polysaccharide degradation
+MF0005	starch degradation	input	carbohydrate degradation	polysaccharide degradation
+MF0006	lactose degradation	input	carbohydrate degradation	disaccharide degradation
+MF0007	lactose and galactose degradation	input	carbohydrate degradation	disaccharide degradation
+MF0008	maltose degradation	input	carbohydrate degradation	disaccharide degradation
+MF0009	melibiose degradation	input	carbohydrate degradation	disaccharide degradation
+MF0010	sucrose degradation I	input	carbohydrate degradation	disaccharide degradation
+MF0011	sucrose degradation II	input	carbohydrate degradation	disaccharide degradation
+MF0012	trehalose degradation	input	carbohydrate degradation	disaccharide degradation
+MF0013	allose degradation	input	carbohydrate degradation	monosaccharide degradation
+MF0014	arabinose degradation	input	carbohydrate degradation	monosaccharide degradation
+MF0015	fructose degradation	input	carbohydrate degradation	monosaccharide degradation
+MF0016	fucose degradation	output	organic acid metabolism	propionate metabolism
+MF0017	galactose degradation	input	carbohydrate degradation	monosaccharide degradation
+MF0018	mannose degradation	input	carbohydrate degradation	monosaccharide degradation
+MF0019	rhamnose degradation	input	carbohydrate degradation	monosaccharide degradation
+MF0020	ribose degradation	input	carbohydrate degradation	monosaccharide degradation
+MF0021	xylose degradation	input	carbohydrate degradation	monosaccharide degradation
+MF0022	galacturonate degradation I	input	carbohydrate degradation	sugar acid degradation
+MF0023	galacturonate degradation II	input	carbohydrate degradation	sugar acid degradation
+MF0024	phenylalanine degradation	input	amino acid degradation	aromatic amino acid degradation
+MF0025	tryptophan degradation	input	amino acid degradation	aromatic amino acid degradation
+MF0026	tyrosine degradation I	input	amino acid degradation	aromatic amino acid degradation
+MF0027	tyrosine degradation II	input	amino acid degradation	aromatic amino acid degradation
+MF0028	aspartate degradation I	input	amino acid degradation	negatively charged amino acid degradation
+MF0029	aspartate degradation II	input	amino acid degradation	negatively charged amino acid degradation
+MF0030	glutamate degradation I	input	amino acid degradation	negatively charged amino acid degradation
+MF0031	glutamate degradation II	input	amino acid degradation	negatively charged amino acid degradation
+MF0032	glutamate degradation III	input	amino acid degradation	negatively charged amino acid degradation
+MF0033	alanine degradation I	input	amino acid degradation	nonpolar, aliphatic amino acid degradation
+MF0034	alanine degradation II	input	amino acid degradation	nonpolar, aliphatic amino acid degradation
+MF0035	glycine degradation	input	amino acid degradation	nonpolar, aliphatic amino acid degradation
+MF0036	isoleucine degradation	input	amino acid degradation	nonpolar, aliphatic amino acid degradation
+MF0037	leucine degradation	input	amino acid degradation	nonpolar, aliphatic amino acid degradation
+MF0038	methionine degradation I	input	amino acid degradation	nonpolar, aliphatic amino acid degradation
+MF0039	methionine degradation II	input	amino acid degradation	nonpolar, aliphatic amino acid degradation
+MF0040	proline degradation	input	amino acid degradation	nonpolar, aliphatic amino acid degradation
+MF0041	valine degradation I	input	amino acid degradation	nonpolar, aliphatic amino acid degradation
+MF0042	asparagine degradation	input	amino acid degradation	polar, uncharged amino acid degradation
+MF0043	cysteine biosynthesis/homocysteine degradation	input	amino acid degradation	 polar, uncharged amino acid degradation
+MF0044	cysteine degradation I	input	amino acid degradation	polar, uncharged amino acid degradation
+MF0045	cysteine degradation II	input	amino acid degradation	polar, uncharged amino acid degradation
+MF0046	glutamine degradation I	input	amino acid degradation	polar, uncharged amino acid degradation
+MF0047	glutamine degradation II	input	amino acid degradation	polar, uncharged amino acid degradation
+MF0048	serine degradation	input	amino acid degradation	polar, uncharged amino acid degradation
+MF0049	threonine degradation I	input	amino acid degradation	polar, uncharged amino acid degradation
+MF0050	threonine degradation II	input	amino acid degradation	polar, uncharged amino acid degradation
+MF0051	arginine degradation I	input	amino acid degradation	positively charged amino acid degradation
+MF0052	arginine degradation II	input	amino acid degradation	positively charged amino acid degradation
+MF0053	arginine degradation III	input	amino acid degradation	positively charged amino acid degradation
+MF0054	arginine degradation IV	input	amino acid degradation	positively charged amino acid degradation
+MF0055	arginine degradation V	input	amino acid degradation	positively charged amino acid degradation
+MF0056	histidine degradation	input	amino acid degradation	positively charged amino acid degradation
+MF0057	lysine degradation I	input	amino acid degradation	positively charged amino acid degradation
+MF0058	lysine degradation II	input	amino acid degradation	positively charged amino acid degradation
+MF0059	anaerobic fatty acid beta-oxidation	input	lipid degradation	beta-oxidation
+MF0060	glycerol degradation I	input	lipid degradation	glycerol degradation
+MF0061	glycerol degradation II	input	lipid degradation	glycerol degradation
+MF0062	glycerol degradation III	input	lipid degradation	glycerol degradation
+MF0063	glyoxylate bypass	central	lipid degradation	glyoxylate bypass
+MF0064	triacylglycerol degradation	input	lipid degradation	triacylglycerol degradation
+MF0065	Bifidobacterium shunt	central	central metabolism	energy metabolism
+MF0066	Entner-Doudoroff pathway	central	central metabolism	energy metabolism
+MF0067	glycolysis (preparatory phase)	central	central metabolism	energy metabolism
+MF0068	glycolysis (pay-off phase)	central	central metabolism	energy metabolism
+MF0069	NADH:ferredoxin oxidoreductase	central	gas metabolism	hydrogen metabolism
+MF0070	pentose phosphate pathway (oxidative phase)	central	central metabolism	energy metabolism
+MF0071	pentose phosphate pathway (non-oxidative branch)	central	central metabolism	energy metabolism
+MF0072	pyruvate dehydrogenase complex	central	central metabolism	energy metabolism
+MF0073	pyruvate:ferredoxin oxidoreductase	central	central metabolism	energy metabolism
+MF0074	pyruvate:formate lyase	central	central metabolism	energy metabolism
+MF0075	acetate to acetyl-CoA	input	organic acid metabolism	acetate metabolism
+MF0076	4-aminobutyrate degradation	input	amino acid degradation	positively charged amino acid degradation
+MF0077	formate conversion	input	organic acid metabolism	formate metabolism
+MF0078	lactaldehyde degradation	input	organic acid metabolism	propionate metabolism
+MF0079	lactate consumption I	input	organic acid metabolism	lactate metabolism
+MF0080	lactate consumption II	input	organic acid metabolism	propionate metabolism
+MF0081	methanol conversion	input	gas metabolism	methanogenesis
+MF0082	putrescine degradation	input	amines and polyamines degradation	biogenic amine degradation
+MF0083	succinate consumption	input	organic acid metabolism	butyrate metabolism
+MF0084	succinate conversion to propionate	input	organic acid metabolism	succinate metabolism
+MF0085	urea degradation	input	amines and polyamines degradation	urea degradation
+MF0086	acetyl-CoA to acetate	output	organic acid metabolism	acetate metabolism
+MF0087	acetyl-CoA to crotonyl-CoA	output	organic acid metabolism	butyrate metabolism
+MF0088	butyrate production I	output	organic acid metabolism	butyrate metabolism
+MF0089	butyrate production II	output	organic acid metabolism	butyrate metabolism
+MF0090	ethanol production I	output	alcohol metabolism	ethanol metabolism
+MF0091	ethanol production II	output	alcohol metabolism	ethanol metabolism
+MF0092	lactate production	output	organic acid metabolism	lactate metabolism
+MF0093	propionate production I	output	organic acid metabolism	propionate metabolism
+MF0094	propionate production II	output	organic acid metabolism	propionate metabolism
+MF0095	propionate production III	output	organic acid metabolism	propionate metabolism
+MF0096	succinate production	output	organic acid metabolism	succinate metabolism
+MF0097	homoacetogenesis	input	gas metabolism	acetogenesis
+MF0098	hydrogen metabolism	output	gas metabolism	hydrogen metabolism
+MF0099	methanogenesis - methyl-coM	output	gas metabolism	methanogenesis
+MF0100	methanogenesis from carbon dioxide	output	gas metabolism	methanogenesis
+MF0101	nitrate reduction (dissimilatory)	output	inorganic nutrient metabolism	nitrogen
+MF0102	sulfate reduction (dissimilatory)	output	gas metabolism	sulfate metabolism
+MF0103	mucin degradation	input	glycoprotein degradation	mucus degradation
