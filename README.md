@@ -1,6 +1,25 @@
 # Colorectal Cancer Meta-Analysis
 
-TODO
+Association studies have linked microbiome alterations with many human diseases. 
+However, they have not always reported consistent results, thereby necessitating 
+cross-study comparisons. Here, a meta-analysis of eight geographically and 
+technically diverse fecal shotgun metagenomic studies of colorectal cancer 
+(CRC, n = 768), which was controlled for several confounders, identified a core 
+set of 29 species significantly enriched in CRC metagenomes (false discovery rate 
+(FDR) < 1 × 10−5). CRC signatures derived from single studies maintained their 
+accuracy in other studies. By training on multiple studies, we improved detection 
+accuracy and disease specificity for CRC. Functional analysis of CRC metagenomes 
+revealed enriched protein and mucin catabolism genes and depleted carbohydrate 
+degradation genes. Moreover, we inferred elevated production of secondary bile acids 
+from CRC metagenomes, suggesting a metabolic link between cancer-associated gut 
+microbes and a fat- and meat-rich diet. Through extensive validations, this meta-analysis 
+firmly establishes globally generalizable, predictive taxonomic and functional 
+microbiome CRC signatures as a basis for future diagnostics.
+
+> Please note:  
+> The data are at the moment only available from within the EMBL
+> intranet, but will be moved to Zenodo or another repository soon.
+
 
 ## Requirements
 
