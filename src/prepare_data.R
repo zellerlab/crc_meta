@@ -231,6 +231,13 @@ write.table(eggnog.ext.red, file=fn.eggnog.rel.ab, quote=FALSE, sep='\t',
 cat('Successfully cleaned and saved data in',
     proc.time()[1]-start.time, 'second...\n')
 
+# ##############################################################################
+# download and unzip the gene abundances
+
+fn.gene.ab <- paste0(data.loc, 'functional_profiles/gene_abundances.zip')
+download.file(fn.gene.ab, destfile = '../data/genes/all_genes.zip')
+unzip('../data/genes/all_genes.zip', exdir = '../data/genes/')
+
 # #######################
 # End of script
 # #######################
