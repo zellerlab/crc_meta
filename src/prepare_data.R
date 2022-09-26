@@ -22,11 +22,13 @@ v.tag <- parameters$setup$tag
 ab.cutoff <- as.numeric(parameters$setup$ab.cutoff)
 crc.studies <- parameters$ref.studies
 
+data.loc <- 'https://zenodo.org/api/files/fe65c9e1-6449-48a3-b001-6c394902a512/'
+
 # ##############################################################################
 # read in raw data
 
 # metadata
-fn.meta <- paste0(data.loc, 'metadata/meta_all.tsv')
+fn.meta <- paste0(data.loc, 'meta_all.tsv')
 meta.all <- read_tsv(fn.meta)
 
 meta.crc <- meta.all %>%
@@ -34,7 +36,7 @@ meta.crc <- meta.all %>%
   filter(Group %in% c('CTR', 'CRC'))
 
 # features
-fn.feat <- paste0(data.loc, 'mOTU_profiles/species_profiles_',
+fn.feat <- paste0(data.loc, 'species_profiles_',
                   v.tag, '_motus2.0.0.tsv')
 feat.ab.all <- read.table(fn.feat, sep='\t', stringsAsFactors = FALSE,
                         header = TRUE, check.names = FALSE, row.names = 1,
@@ -158,7 +160,7 @@ suppressWarnings(write.table(t(label), file=fn.label, quote=FALSE, sep='\t',
 # ##############################################################################
 # same for functional data
 ## KEGG
-fn.kegg <- paste0(data.loc, 'functional_profiles/KEGG_profiles_crc_meta.tsv')
+fn.kegg <- paste0(data.loc, 'KEGG_profiles_crc_meta.tsv')
 kegg.all <- as.matrix(read.csv(fn.kegg, sep='\t', stringsAsFactors = FALSE,
                                header = TRUE, check.names = FALSE,
                                row.names = 1))
@@ -180,8 +182,7 @@ write.table(kegg.red, file=fn.kegg.rel.ab, quote=FALSE, sep='\t',
             row.names=TRUE, col.names=TRUE)
 
 ## eggNOG
-fn.eggnog <- paste0(data.loc,
-                    'functional_profiles/eggNOG_profiles_crc_meta.tsv')
+fn.eggnog <- paste0(data.loc, 'eggNOG_profiles_crc_meta.tsv')
 eggnog.all <- as.matrix(read.csv(fn.eggnog, sep='\t',
                                  stringsAsFactors = FALSE,
                                  header = TRUE, check.names = FALSE,
@@ -207,8 +208,7 @@ write.table(eggnog.red, file=fn.eggnog.rel.ab, quote=FALSE, sep='\t',
 # download and save the functional profiles of external studies as well
 
 # KEGG
-fn.feat <- paste0(data.loc, 
-                  'functional_profiles/KEGG_profiles_crc_external.tsv')
+fn.feat <- paste0(data.loc, 'KEGG_profiles_crc_external.tsv')
 kegg.ext <- read.csv(file = fn.feat, sep='\t', stringsAsFactors = FALSE,
                      row.names = 1, check.names = FALSE)
 stopifnot(all(meta.crc.ext$Sample_ID %in% colnames(kegg.ext)))
@@ -218,8 +218,7 @@ write.table(kegg.ext.red, file=fn.kegg.rel.ab, quote=FALSE, sep='\t',
             row.names=TRUE, col.names=TRUE)
 
 # eggNOG
-fn.feat <- paste0(data.loc, 
-                  'functional_profiles/eggNOG_profiles_crc_external.tsv')
+fn.feat <- paste0(data.loc, 'eggNOG_profiles_crc_external.tsv')
 eggnog.ext <- read.csv(file = fn.feat, sep='\t', stringsAsFactors = FALSE,
                        row.names = 1, check.names = FALSE)
 stopifnot(all(meta.crc.ext$Sample_ID %in% colnames(eggnog.ext)))
