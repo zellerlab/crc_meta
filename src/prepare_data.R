@@ -233,7 +233,7 @@ cat('Successfully cleaned and saved data in',
 # ##############################################################################
 # download and unzip the gene abundances
 
-fn.gene.ab <- paste0(data.loc, 'functional_profiles/gene_abundances.zip')
+fn.gene.ab <- 'https://oc.embl.de/index.php/s/aKIZXC7JrNcco9c/download'
 download.file(fn.gene.ab, destfile = '../data/genes/all_genes.zip')
 unzip('../data/genes/all_genes.zip', exdir = '../data/genes/')
 
